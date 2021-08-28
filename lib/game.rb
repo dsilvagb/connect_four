@@ -40,16 +40,13 @@ class ConnectFour
 
   def play_again?
     loop do
-      puts "Would you like to play again?"
-      input = gets.chomp
-      case input
-      when 'Y', 'y'
-        return true
-      when 'N', 'n'
-        return false
-      else
-        puts "Invalid choice.  Please select 'y' or 'n'"
-      end
+      puts 'Would you like to play again?'
+      input = gets.chomp.downcase
+
+      return true if input.include?('y')
+      return false if input.include?('n')
+
+      puts "Invalid choice.  Please select 'y' or 'n'"
     end
   end
 

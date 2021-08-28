@@ -23,10 +23,19 @@ class Board
       row_val.each_with_index do |_col_val, col|
         # display an existing marker any, else blank
         s = @board[row][col]
-        s.kind_of?(Integer) ? (print s) : (s == "R" ? (print s.red) : (print s.blue))
+        render_cell(s)
         print '|'
       end
       puts "\n+-------------+"
+    end
+  end
+
+  # cell contents
+  def render_cell(cell)
+    if cell.is_a?(Integer)
+      print cell
+    else
+      (cell == 'R' ? (print cell.red) : (print cell.blue))
     end
   end
 
@@ -106,8 +115,8 @@ class Board
   # check for four in a row
   def four_in_a_row_by_row(arr)
     arr.each do |row|
-      a = row.each_cons(4).find { |a| a.uniq.size == 1 && a.first != ' ' }
-      return a.first unless a.nil?
+      result = row.each_cons(4).find { |a| a.uniq.size == 1 && a.first != ' ' }
+      return result.first unless result.nil?
     end
     nil
   end
